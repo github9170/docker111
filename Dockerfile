@@ -12,6 +12,7 @@ ADD https://www.free-css.com/assets/files/free-css-templates/download/page296/he
 WORKDIR /var/www/html
 
 RUN unzip healet.zip && \
+    ls && \
     cp -rvf healet-html/* /var/www/html && \
     rm -rf healet healet-html healet.zip
 
