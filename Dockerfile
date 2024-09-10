@@ -7,13 +7,14 @@ RUN apt-get update && apt-get install -y \
     apache2-utils && \
     apt-get clean
 
-RUN curl -o /var/www/html/healet.zip https://www.free-css.com/assets/files/free-css-templates/download/page296/healet.zip /var/www/html/
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page296/healet.zip /var/www/html/
 
 WORKDIR /var/www/html
 
-RUN unzip  healet.zip && \
-    cp -rvf healet-html/* 
-    
+RUN unzip healet.zip && \
+    cp -rvf healet-html/* /var/www/html && \
+    rm -rf healet healet-html healet.zip
+
 EXPOSE 80
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
